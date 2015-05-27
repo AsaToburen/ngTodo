@@ -1,0 +1,18 @@
+{
+  "name": "public",
+  "version": "0.0.0",
+  "homepage": "https://github.com/AsaToburen/ngToDoList",
+  "authors": [
+    "Asa Toburen <atopettit@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.3.15"
+  }
+}

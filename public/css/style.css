@@ -1,0 +1,38 @@
+body {
+    background-image: url('../images/notebook.jpg');
+    background-size: cover;
+    background-position: 50% 6%;
+    margin-top: 5em;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.strikethrough {
+    text-decoration: line-through;
+}
+
+div.title {
+    background-color: #fff;
+    padding-bottom: 2em;
+    padding-left: 2em;
+    border-radius: 4em;
+}
+
+div h1 {
+    margin-bottom: 1em;
+}
+
+h2,
+i {
+    display: inline-block;
+    margin: 0 3em;
+}
+
+.notepad {
+    height: 30em;
+    padding-top: 2.15em;
+}
