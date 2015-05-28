@@ -10,6 +10,7 @@ var express = require('express'),
 mongoose.connect(database.url);
 
 app.use(express.static(__dirname + '/public'));
+app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({
