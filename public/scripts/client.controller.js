@@ -1,13 +1,14 @@
 'use strict';
 
 angular.module('ngShopList', [])
-    .controller('mainCtrl', ['$scope', '$http', 'clientService',
-        function($scope, $http, clientService) {
+    .controller('mainCtrl', ['$scope', '$http', 'clientService', 'storageService',
+        function($scope, $http, clientService, storageService) {
 
             $scope.userInput = {};
 
             clientService.get().then(function(items) {
                 $scope.items = items;
+                console.log(localStorage);
             });
 
             $scope.addItem = function() {
@@ -15,6 +16,7 @@ angular.module('ngShopList', [])
                     .then(function(data) {
                         $scope.userInput = {};
                         $scope.items = data;
+                        storageService.setData('items', JSON.stringify(data));
                     });
             };
 
@@ -23,6 +25,10 @@ angular.module('ngShopList', [])
                     .then(function(data) {
                         $scope.items = data;
                     });
+            };
+
+            var pageRefresh = function() {
+
             };
         }
     ]);
