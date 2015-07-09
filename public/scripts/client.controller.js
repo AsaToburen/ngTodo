@@ -6,11 +6,6 @@ angular.module('ngShopList', [])
 
             $scope.userInput = {};
 
-            clientService.get().then(function(items) {
-                $scope.items = items;
-                console.log(localStorage);
-            });
-
             $scope.addItem = function() {
                 clientService.addItem($scope.userInput)
                     .then(function(data) {
@@ -27,8 +22,24 @@ angular.module('ngShopList', [])
                     });
             };
 
-            var pageRefresh = function() {
+            var evalItems = function() {
 
+                var storageItems = JSON.parse(storageService.getData('items'));
+                var serviceItems;
+
+                clientService.get().then(function(items) {
+                    serviceItems = items;
+                });
+
+                $scope.items = angular.extend(storageItems, serviceItems);
+
+                //storage service .get data items if has items ..... then retrieve items....
+
+                //check local storage if yes get them, as well get them from server for that user. 
+                //pull from local storage ... angular.Extend to combine two arrays together. when you have them tog
+                //
             };
+
+            evalItems();
         }
     ]);
