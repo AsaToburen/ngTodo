@@ -19,27 +19,26 @@ angular.module('ngShopList', [])
                 clientService.delete(id)
                     .then(function(data) {
                         $scope.items = data;
+                        storageService.setData('items', JSON.stringify(data));
                     });
             };
 
             var evalItems = function() {
+                if (storageService.getData('items')) {
+                    $scope.items = storageService.getData('items');
+                } else {
+                    var storageItems = JSON.parse(storageService.getData('items'));
+                    var serviceItems;
 
-                var storageItems = JSON.parse(storageService.getData('items'));
-                var serviceItems;
+                    clientService.get().then(function(items) {
+                        serviceItems = items;
+                        var mergedItems = angular.extend(storageItems, serviceItems);
+                        $scope.items = mergedItems;
+                        storageService.setData('items', mergedItems);
+                    });
+                };
 
-                clientService.get().then(function(items) {
-                    serviceItems = items;
-                });
-
-                $scope.items = angular.extend(storageItems, serviceItems);
-
-                //storage service .get data items if has items ..... then retrieve items....
-
-                //check local storage if yes get them, as well get them from server for that user. 
-                //pull from local storage ... angular.Extend to combine two arrays together. when you have them tog
-                //
+                evalItems();
             };
-
-            evalItems();
         }
     ]);
